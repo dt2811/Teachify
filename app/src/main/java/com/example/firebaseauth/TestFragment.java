@@ -44,7 +44,7 @@ public class TestFragment extends Fragment {
     private ArrayAdapter<String> arrayAdapter;
     FirebaseFirestore fb;
     List<String> Question, Answers,useranswer;
-    int i=0,j=0;
+    int i=0,j=1;
     View v;
     Map<String, Object> data;
     int count=0;
@@ -76,17 +76,15 @@ public class TestFragment extends Fragment {
        done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for(int u=0;u<n/2;u++){
-                    if( useranswer.get(u)!=null){
-                        if(useranswer.get(u).equals(Answers.get(u))){
-                            count++;
-                        }
 
+                    if(answer.getText().toString().compareTo(data.get("a"+j).toString())==0){
+                        count++;
                     }
-                    else{
-                        Toast.makeText(getContext(),String.valueOf(count), Toast.LENGTH_SHORT).show();
-                    }
-                }
+                    question.setText("Your score is: "+count);
+                    answer.setVisibility(View.INVISIBLE);
+                    next.setVisibility(View.INVISIBLE);
+                    done.setVisibility(View.INVISIBLE);
+
                 Toast.makeText(getContext(), String.valueOf(count), Toast.LENGTH_SHORT).show();
             }
         });
@@ -94,9 +92,16 @@ public class TestFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(j<n/2){
-                    useranswer.add(answer.getText().toString());
-                    question.setText(Question.get(j));
-                    j++;}
+                    String ax="a"+(j);
+                    if(answer.getText().toString().compareTo(data.get(ax).toString())==0){
+                        count++;
+                    }
+
+                    j++;
+                    String qx="q"+j;
+                    question.setText((String)data.get(qx));
+
+                answer.setText("");}
                 else{
                     Toast.makeText(getContext(), "CLICK DONE TEST FINISH", Toast.LENGTH_SHORT).show();
                 }
@@ -135,18 +140,19 @@ public class TestFragment extends Fragment {
     public void questionload(){
         n=data.size();
         if(n!=0){
-        for (Map.Entry<String,Object> entry : data.entrySet()){
-            if(i!=n%2){
-                Answers.add((String) entry.getValue());
-
-            }
-            else{
-                Question.add((String) entry.getValue());
-            }
-            i++;
-            Log.i("i", (String) entry.getValue());
-
-        }
+            Log.d("xxxxx", "questionload: "+data.keySet());
+//        for (Map.Entry<String,Object> entry : data.entrySet()){
+//            if(i!=n%2){
+//                Answers.add((String) entry.getValue());
+//
+//            }
+//            else{
+//                Question.add((String) entry.getValue());
+//            }
+//            i++;
+//            Log.i("i", (String) entry.getValue());
+//
+//        }
         }
         else{
             Toast.makeText(getContext(), "Sorry something went wrong", Toast.LENGTH_SHORT).show();
@@ -154,6 +160,7 @@ public class TestFragment extends Fragment {
         question.setVisibility(View.VISIBLE);
         answer.setVisibility(View.VISIBLE);
 
+        question.setText((String)data.get("q1"));
         next.setVisibility(View.VISIBLE);
         done.setVisibility(View.VISIBLE);
     }
