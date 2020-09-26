@@ -50,8 +50,13 @@ public class recycleradapter extends RecyclerView.Adapter<recycleradapter.holder
         holder.c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context.getApplicationContext(), Video.class);
+
+                Intent i = new Intent(context.getApplicationContext(), Enrollment.class);
+                i.putExtra("TITLE", title.get(position));
+                i.putExtra("Description",des.get(position));
+                i.putExtra("Image_url",images.get(position));
                 context.startActivity(i);
+
             }
         });
     }
