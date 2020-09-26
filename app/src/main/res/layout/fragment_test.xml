@@ -7,8 +7,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/design">
 
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
-        android:id="@+id/Titleadd"
+        android:visibility="gone"
+        android:id="@+id/test_question"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="30dp"
@@ -16,43 +25,13 @@
         android:layout_marginEnd="30dp"
         android:ems="60"
         android:fontFamily="@font/eastman"
-        android:text="Enter the Question bellow in the given section.Once you are done enter the answer ,Once you are Done click to put next question."
+        android:text="Question"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
-        android:id="@+id/name"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:ems="40"
-        android:fontFamily="@font/eastman"
-        android:hint="TestName"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Titleadd" />
-
-    <EditText
-        android:id="@+id/questions"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:ems="40"
-        android:fontFamily="@font/eastman"
-        android:hint="Question"
-        android:inputType="textLongMessage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
-
-    <EditText
-        android:id="@+id/answers"
+        android:visibility="gone"
+        android:id="@+id/test_answer"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -64,10 +43,11 @@
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questions" />
+        app:layout_constraintTop_toBottomOf="@+id/test_question" />
 
     <Button
-        android:id="@+id/Nextbutton"
+        android:visibility="gone"
+        android:id="@+id/next_button"
         android:layout_width="160dp"
         android:layout_height="70dp"
         android:layout_marginTop="70dp"
@@ -77,10 +57,11 @@
         android:fontFamily="@font/eastman"
         android:text="Next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answers" />
+        app:layout_constraintTop_toBottomOf="@+id/test_answer" />
 
     <Button
-        android:id="@+id/Donebutton"
+        android:visibility="gone"
+        android:id="@+id/done_button"
         android:layout_width="160dp"
         android:layout_height="70dp"
         android:layout_marginStart="30dp"
@@ -90,7 +71,5 @@
         android:fontFamily="@font/eastman"
         android:text="Done"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answers" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/test_answer" />
 </androidx.constraintlayout.widget.ConstraintLayout>
