@@ -10,7 +10,7 @@ import android.widget.VideoView;
 public class Video extends AppCompatActivity {
     VideoView videoView;
    //url
-    private String url="url";
+    private String url="https://firebasestorage.googleapis.com/v0/b/videoview-247213.appspot.com/o/Video.mp4?alt=media&token=d049cc83-5635-487d-ac48-1a36d5b64844";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
