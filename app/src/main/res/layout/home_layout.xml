@@ -4,15 +4,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/design">
 
-    <ListView
-        android:layout_width="381dp"
-        android:layout_height="605dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="393dp"
+        android:layout_height="574dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.574" />
+        app:layout_constraintVertical_bias="0.881" />
+
+    <TextView
+        android:id="@+id/Courses"
+        android:layout_width="156dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/eastman"
+        android:text="Top Courses"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.102" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

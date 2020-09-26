@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Page2">
+    tools:context=".Page2"
+    android:background="@drawable/design">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
-        android:layout_width="408dp"
-        android:layout_height="98dp"
+        android:layout_width="411dp"
+        android:layout_height="85dp"
         android:background="@color/colorPrimary"
         app:itemIconTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,12 +23,11 @@
 
     <FrameLayout
         android:id="@+id/fragholder"
-        android:layout_width="397dp"
-        android:layout_height="552dp"
+        android:layout_width="363dp"
+        android:layout_height="493dp"
         android:layout_marginBottom="108dp"
         app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
