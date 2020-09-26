@@ -28,26 +28,27 @@ public class Page2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page2);
         BottomNavigationView bt = findViewById(R.id.bottomNavigationView);
-       bt.setOnNavigationItemSelectedListener(np);
+        bt.setOnNavigationItemSelectedListener(np);
 
     }
-   BottomNavigationView.OnNavigationItemSelectedListener np=new BottomNavigationView.OnNavigationItemSelectedListener() {
-       @Override
-       public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-           Fragment current=null;
-           switch(item.getItemId()){
-               case R.id.homebutton:
-                   current=new homefrag();
-                   break;
-               case R.id.search:
-                   current=new searchfrag();
-                   break;
-               case R.id.add:
-                   current=new addfrag();
-                   break;
-           }
-           getSupportFragmentManager().beginTransaction().replace(R.id.fragholder,current).commit();
-           return true;
-       }
-   };
+
+    BottomNavigationView.OnNavigationItemSelectedListener np = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment current = null;
+            switch (item.getItemId()) {
+                case R.id.homebutton:
+                    current = new homefrag();
+                    break;
+                case R.id.search:
+                    current = new searchfrag();
+                    break;
+                case R.id.add:
+                    current = new addfrag();
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragholder, current).commit();
+            return true;
+        }
+    };
 }
