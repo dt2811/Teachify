@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class recycleradapter extends RecyclerView.Adapter<recycleradapter.holder> {
+public class recycleradapter extends RecyclerView.Adapter<recycleradapter.holder>
+{
     ArrayList<String> des;
      ArrayList<String> title;
 
