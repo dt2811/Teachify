@@ -51,21 +51,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.711" />
+
     <Button
         android:id="@+id/create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round"
         android:fontFamily="@font/eastman"
-        android:text="Create "
         android:onClick="signup"
+        android:text="Create "
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.711"
-        android:visibility="invisible"/>
+        app:layout_constraintVertical_bias="0.754" />
 
     <TextView
         android:id="@+id/Login"
