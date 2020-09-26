@@ -30,8 +30,8 @@ public class TestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.search_layout,container,false);
-        listView=v.findViewById(R.id.listview);
+        View v=inflater.inflate(R.layout.fragment_test,container,false);
+        listView=v.findViewById(R.id.listview2);
         list=new ArrayList<String>();
         list.add("aaaaaaa");
         list.add("aadb");
@@ -40,8 +40,7 @@ public class TestFragment extends Fragment {
         answer=v.findViewById(R.id.test_answer);
         next=v.findViewById(R.id.next_button);
         done=v.findViewById(R.id.done_button);
-        arrayAdapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,list);
-
+        arrayAdapter=new ArrayAdapter<String>(v.getContext(),android.R.layout.simple_list_item_1,list);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -49,6 +48,7 @@ public class TestFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 listView.setVisibility(View.GONE);
                 question.setVisibility(View.VISIBLE);
+                answer.setVisibility(View.VISIBLE);
                 next.setVisibility(View.VISIBLE);
                 done.setVisibility(View.VISIBLE);
             }
