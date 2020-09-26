@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
            auth.createUserWithEmailAndPassword(e,p).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                @Override
                public void onComplete(@NonNull Task<AuthResult> task) {
-                   if(task.isComplete()){
+                   if(task.isSuccessful()){
                        Toast.makeText(MainActivity.this, "Registered" , Toast.LENGTH_SHORT).show();
 
 
@@ -128,12 +128,15 @@ public class MainActivity extends AppCompatActivity {
             auth.signInWithEmailAndPassword(e,p).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isComplete()){
+                    if(task.isSuccessful()){
                         Toast.makeText(MainActivity.this, "Sign in success", Toast.LENGTH_SHORT).show();
                         FirebaseUser u=auth.getCurrentUser();
                         Intent i=new Intent(MainActivity.this,Page2.class);
                         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(i);
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
