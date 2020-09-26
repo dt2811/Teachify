@@ -8,6 +8,7 @@
     android:background="@drawable/design">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="393dp"
         android:layout_height="574dp"
         app:layout_constraintBottom_toBottomOf="parent"

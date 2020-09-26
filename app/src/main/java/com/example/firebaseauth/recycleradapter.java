@@ -1,6 +1,7 @@
 package com.example.firebaseauth;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,37 +17,42 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class recycleradapter extends RecyclerView.Adapter<recycleradapter.holder> {
-    ArrayList<String> data;
+    ArrayList<String> des;
+     ArrayList<String> title;
+
     ArrayList<Integer> images;
     Context context;
-    public recycleradapter(Context c ,ArrayList<String> data,ArrayList<Integer> images){
+    public recycleradapter(Context c ,ArrayList<String> title,ArrayList<String> des,ArrayList<Integer> images){
         context=c;
-        this.data=data;
+        this.title=title;
+        this.des=des;
         this.images=images;
     }
     @NonNull
     @Override
     public holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-        View v=View.inflate(parent.getContext(),//R.layout.recycle,null);
+        View v=View.inflate(parent.getContext(),R.layout.recyclerviewer,null);
         return new holder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final holder holder, final int position) {
-        holder.t.setText(data.get(position));
+        holder.t.setText(des.get(position));
+        holder.t2.setText(title.get(position));
         holder.i.setImageResource(images.get(position));
         holder.c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(context, data.get(position), Toast.LENGTH_SHORT).show();
+                Intent i =new Intent(context.getApplicationContext(),Video.class);
+                context.startActivity(i);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return title.size();
     }
 
     class holder extends RecyclerView.ViewHolder {
@@ -56,8 +62,10 @@ public class recycleradapter extends RecyclerView.Adapter<recycleradapter.holder
 
         public  holder(@NonNull View itemView) {
             super(itemView);
-            //t=itemView.findViewById(R.id.t);
-            //i=itemView.findViewById(R.id.recycleimage);
+            t=itemView.findViewById(R.id.title);
+            t2=itemView.findViewById(R.id.description);
+            i=itemView.findViewById(R.id.imageview);
+            c=itemView.findViewById(R.id.cardview);
 
         }
     }
