@@ -1,5 +1,6 @@
 package com.example.firebaseauth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,22 +31,25 @@ public class Video extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
         Intent intent = getIntent();
-        String gTitle = intent.getStringExtra("TITLE");
+        title = intent.getStringExtra("TITLE");
+        description=intent.getStringExtra("Description");
+        url=intent.getStringExtra("Image_url");
 
-        FirebaseFirestore ref = FirebaseFirestore.getInstance();
-        ref.collection("Courses").document(gTitle).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+       FirebaseFirestore ref = FirebaseFirestore.getInstance();
+        ref.collection("Courses").document(title).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 Toast.makeText(Video.this, "Success", Toast.LENGTH_SHORT).show();
                 url = documentSnapshot.getString("video_url");
-                description = documentSnapshot.getString("description");
-                title = documentSnapshot.getString("name");
+
                 play();
-//                des.add(documentSnapshot.getString("description"));
-//                title.add(documentSnapshot.getString("name"));
-//
-//                images.add(documentSnapshot.getString("img_url"));
-//                r.setAdapter(new recycleradapter(getContext(), title, des, images));
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Video.this, "Failed", Toast.LENGTH_SHORT).show();
+                play();
             }
         });
 
