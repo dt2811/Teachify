@@ -132,23 +132,21 @@ public class TestFragment extends Fragment {
             }
         });
     }
-    public void questionload(){
-        n=data.size();
-        if(n!=0){
-        for (Map.Entry<String,Object> entry : data.entrySet()){
-            if(i!=n%2){
-                Answers.add((String) entry.getValue());
+    public void questionload() {
+        n = data.size();
+        if (n != 0) {
+            for (Map.Entry<String, Object> entry : data.entrySet()) {
+                if (i != n % 2) {
+                    Answers.add((String) entry.getValue());
+
+                } else {
+                    Question.add((String) entry.getValue());
+                }
+                i++;
+                Log.i("i", (String) entry.getValue());
 
             }
-            else{
-                Question.add((String) entry.getValue());
-            }
-            i++;
-            Log.i("i", (String) entry.getValue());
-
-        }
-        }
-        else{
+        } else {
             Toast.makeText(getContext(), "Sorry something went wrong", Toast.LENGTH_SHORT).show();
         }
         question.setVisibility(View.VISIBLE);
@@ -157,9 +155,6 @@ public class TestFragment extends Fragment {
         next.setVisibility(View.VISIBLE);
         done.setVisibility(View.VISIBLE);
     }
-
-
-
 
 
 

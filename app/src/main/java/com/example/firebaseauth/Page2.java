@@ -32,7 +32,7 @@ public class Page2 extends AppCompatActivity {
         setContentView(R.layout.activity_page2);
         BottomNavigationView bt = findViewById(R.id.bottomNavigationView);
         bt.setOnNavigationItemSelectedListener(np);
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragholder, new homefrag()).commit();
     }
 
     BottomNavigationView.OnNavigationItemSelectedListener np = new BottomNavigationView.OnNavigationItemSelectedListener() {
