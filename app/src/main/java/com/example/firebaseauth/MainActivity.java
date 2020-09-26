@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,10 +29,12 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
   private FirebaseAuth auth;
-  EditText email,password,repass;
+  EditText email,password,repass,name;
   TextView login,sign,forgot;
+  RadioButton teacher,student;
+  RadioGroup radioGroup;
   Button s,c;
-    String e;
+    String e,category;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,17 +44,23 @@ public class MainActivity extends AppCompatActivity {
         password=findViewById(R.id.password);
         repass=findViewById(R.id.repassword);
         login=findViewById(R.id.Login);
+        name=findViewById(R.id.Name);
         sign=findViewById(R.id.Sign);
         forgot=findViewById(R.id.forgot);
+        teacher=findViewById(R.id.radio_teacher);
+        student=findViewById(R.id.radio_student);
+        radioGroup=findViewById(R.id.radiogroup);
         s=findViewById(R.id.signin);
         c=findViewById(R.id.create);
         login.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                repass.setVisibility(View.INVISIBLE);
+                repass.setVisibility(View.GONE);
                 forgot.setVisibility(View.VISIBLE);
-                c.setVisibility(View.INVISIBLE);
+                name.setVisibility(View.GONE);
+                c.setVisibility(View.GONE);
+                radioGroup.setVisibility(View.GONE);
                 s.setVisibility(View.VISIBLE);
             }
         });
@@ -58,10 +68,12 @@ public class MainActivity extends AppCompatActivity {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-                forgot.setVisibility(View.INVISIBLE);
+                name.setVisibility(View.VISIBLE);
+                forgot.setVisibility(View.GONE);
                 repass.setVisibility(View.VISIBLE);
                 c.setVisibility(View.VISIBLE);
-                s.setVisibility(View.INVISIBLE);
+                radioGroup.setVisibility(View.VISIBLE);
+                s.setVisibility(View.GONE);
             }
         });
     }
@@ -72,10 +84,23 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser=auth.getCurrentUser();
 
     }
+    public void onRadioClicked(View view) {
+        // Check if button currently checked
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // string with cat student or teacher
+        category = view.getTag().toString();
+
+
+
+
+    }
     public void signup(View view){
+        String n=name.getText().toString();
         String e=email.getText().toString();
        String p=password.getText().toString();
        String r=repass.getText().toString();
+       String c=category;
        if(!e.isEmpty()&&!p.isEmpty()&&r.equals(p)){
            auth.createUserWithEmailAndPassword(e,p).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                @Override
