@@ -2,6 +2,7 @@ package com.example.firebaseauth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.icu.text.CaseMap;
 import android.net.Uri;
@@ -57,6 +58,8 @@ public class Video extends AppCompatActivity {
         Description.setText(description);
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(videoView);
+        mediaController.setMediaPlayer(this.videoView);
+        this.videoView.setMediaController(mediaController);
         Uri uri = Uri.parse(url);
         videoView.setMediaController(mediaController);
         videoView.setVideoURI(uri);
