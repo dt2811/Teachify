@@ -31,12 +31,12 @@
                 android:layout_below="@id/video_view"
                 android:layout_marginTop="10dp"
                 android:text="Title"
-                android:fontFamily="@font/eastman"
+                android:fontFamily="@font/amaranth"
                 android:textSize="25sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/eastmanfont"
+                android:fontFamily="@font/amaranth"
                 android:text="Description"
                 android:layout_marginTop="5dp"
                 android:textSize="20sp"

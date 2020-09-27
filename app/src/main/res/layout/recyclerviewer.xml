@@ -40,7 +40,7 @@
 
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:fontFamily="@font/eastmanfont"
+                android:fontFamily="@font/amaranth"
                 android:padding="2.5dp"
                 android:paddingLeft="2.5dp"
                 android:paddingTop="2.5dp"
@@ -61,7 +61,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:fontFamily="@font/eastmanfont"
+                android:fontFamily="@font/amaranth"
                 android:padding="2.5dp"
                 android:paddingLeft="2.5dp"
                 android:paddingTop="2.5dp"
