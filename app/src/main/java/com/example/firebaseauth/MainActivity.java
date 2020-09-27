@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     Button s, c;
     String e, category, e1, p, r, c1;
+  long ad=0;
     String n;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     HashMap<String, Object> user = new HashMap<>();
@@ -115,7 +117,11 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Registered", Toast.LENGTH_SHORT).show();
                         user.put("Name", n);
-                        user.put("isAdmin", c1.equalsIgnoreCase("teacher"));
+                        boolean ct=c1.equalsIgnoreCase("teacher");
+                        if(ct)
+                        user.put("isAdmin",1);
+                        else
+                            user.put("isAdmin",0);
                         user.put("courses", Arrays.asList());
 
 
@@ -153,11 +159,23 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(MainActivity.this, "Sign in success", Toast.LENGTH_SHORT).show();
+
                         FirebaseUser u = auth.getCurrentUser();
-                        Intent i = new Intent(MainActivity.this, Page2.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(i);
+
+
+                        FirebaseFirestore ft=FirebaseFirestore.getInstance();
+                        ft.collection("Users").document(u.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                ad=documentSnapshot.getLong("isAdmin");
+                                Toast.makeText(MainActivity.this, "Sign in success", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(MainActivity.this, Page2.class);
+                                i.putExtra("Admin",ad);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
+                            }
+                        });
+
                     }
                 }
             });
