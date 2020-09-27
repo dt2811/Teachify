@@ -21,13 +21,13 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -185,8 +185,9 @@ public class addfrag extends Fragment {
         startActivityForResult(imgIntent, GET_IMAGE_REQUEST);
     }
 
-    private String getFileExtension(Uri uri) {
-        ContentResolver cR = getActivity().getApplicationContext().getContentResolver();
+    private String getFileExtension(Uri uri)
+    {
+        ContentResolver cR = Objects.requireNonNull(getActivity()).getApplicationContext().getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
@@ -198,23 +199,23 @@ public class addfrag extends Fragment {
         if (requestCode == GET_IMAGE_REQUEST || requestCode == GET_VIDEO_REQUEST || resultCode == RESULT_OK || data != null || data.getData() != null) {
             if (requestCode == GET_VIDEO_REQUEST) {
                 mVideoUri = data.getData();
-            } else {
-                mImageUri = data.getData();
+                uploadToStorage();
             }
-            uploadToStorage();
+            if  (requestCode == GET_IMAGE_REQUEST) {
+                mImageUri = data.getData();
+                uploadToStorage();
+                Toast.makeText(getContext(), mImageUri.toString(), Toast.LENGTH_SHORT).show();
+            }
         }
 
     }
 
-    private void uploadToStorage() {
-
-        if (mVideoUri != null || mImageUri != null) {
+    private void uploadToStorage()
+    {
+        if(mVideoUri!=null && c == 0)
+        {
+            c += 1;
             final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(mVideoUri));
-
-
-
-
-            if(mVideoUri!=null){
             fileReference.putFile(mVideoUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -228,9 +229,9 @@ public class addfrag extends Fragment {
                                         dbVideoURI = uri.toString();//
                                         Toast.makeText(getActivity(), "Update successful", Toast.LENGTH_LONG).show();
 
-                                        dbImageURI = uri.toString();
-                                    // funcTest();
-                                    Toast.makeText(getActivity(), "Update successful", Toast.LENGTH_LONG).show();
+//                                        dbImageURI = uri.toString();
+//                                    // funcTest();
+//                                    Toast.makeText(getActivity(), "Update successful", Toast.LENGTH_LONG).show();
 
                                     //funcTest();
                                 }
@@ -252,13 +253,16 @@ public class addfrag extends Fragment {
                     Toast.makeText(getActivity(), "Oops :(", Toast.LENGTH_SHORT).show();
                 }
             });}
-            else{
-            fileReference.putFile(mImageUri)
+            else if (mImageUri != null && c == 1)
+            {
+                c = 0;
+                final StorageReference fileReference1 = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
+                fileReference1.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            fileReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     //download URI
@@ -296,13 +300,9 @@ public class addfrag extends Fragment {
 //                }
 //            });
 
-        } else {
-            Toast.makeText(getActivity(), "No file selected", Toast.LENGTH_SHORT).show();
         }
-    }
 
     private void funcTest() {
-        //1 time
 
 
         HashMap<String, Object> hashMap = new HashMap<>();
