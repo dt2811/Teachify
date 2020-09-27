@@ -20,13 +20,13 @@
 
     <TextView
         android:id="@+id/Courses"
-        android:layout_width="156dp"
-        android:layout_height="40dp"
+        android:layout_width="237dp"
+        android:layout_height="48dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/eastman"
         android:text="Top Courses"
-        android:textSize="18sp"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
