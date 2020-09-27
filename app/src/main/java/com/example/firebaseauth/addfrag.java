@@ -303,7 +303,6 @@ public class addfrag extends Fragment {
         }
 
     private void funcTest() {
-        //1 time
 
 
         HashMap<String, Object> hashMap = new HashMap<>();
