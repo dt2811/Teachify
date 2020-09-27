@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -45,17 +46,24 @@ public class homefrag extends Fragment {
       r = v.findViewById(R.id.recycler);
         // r.setLayoutManager(new LinearLayoutManager(v.getContext(), RecyclerView.VERTICAL, false));
         FirebaseFirestore ref = FirebaseFirestore.getInstance();
-        ref.collection("Courses").document("Java").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        ref.collection("Courses").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot documentSnapshot:queryDocumentSnapshots){
                 Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
                 des.add(documentSnapshot.getString("description"));
                 title.add(documentSnapshot.getString("name"));
 
+
                 images.add(documentSnapshot.getString("img_url"));
-                r.setAdapter(new recycleradapter(getContext(), title, des, images));
+
             }
-        });
+                r.setAdapter(new recycleradapter(getContext(), title, des, images));
+        }});
+
+
+
+
 
 //        des.add("hello");
 //        des.add("world");
