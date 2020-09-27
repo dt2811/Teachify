@@ -28,6 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     Button s, c;
     String e, category, e1, p, r, c1;
+
   long ad=0;
     String n;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -168,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                 ad=documentSnapshot.getLong("isAdmin");
+
                                 Toast.makeText(MainActivity.this, "Sign in success", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(MainActivity.this, Page2.class);
                                 i.putExtra("Admin",ad);

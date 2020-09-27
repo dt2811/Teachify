@@ -19,9 +19,9 @@
 
     <FrameLayout
         android:id="@+id/fragholder"
-        android:layout_width="399dp"
-        android:layout_height="552dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="397dp"
+        android:layout_height="598dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
